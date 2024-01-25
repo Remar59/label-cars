@@ -1,21 +1,49 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import React from "react";
+import Home from "./routes/Home";
+import Caritem from "./routes/Caritem";
+import Carlist from "./routes/Carlist";
+import { StyleSheet, Dimensions, Image } from "react-native";
+
+const Stack = createNativeStackNavigator();
+
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer style={styles.text}>
+      <Stack.Navigator screenOptions={{
+        headerStyle: {
+          backgroundColor: '#2D4F6C',
+          },
+          headerTintColor: '#ffffff',
+          headerTitleAlign: "center",
+          headerTitleStyle : {
+            color: 'white',
+            
+        }
+      }}>
+        <Stack.Screen options={ {headerTitle: () => <Image
+      style={{ width: 50, height: 50}}
+      source={require('./img/logo-transparent.png')}
+    />}} name="Home" component={Home}></Stack.Screen>
+        <Stack.Screen name="CarItem" component={Caritem} ></Stack.Screen>
+        <Stack.Screen name="CarList" component={Carlist} options={{ title: 'Nos Véhicules' }}></Stack.Screen>
+      </Stack.Navigator>
+    </NavigationContainer>
   );
+
 }
+const vw = Dimensions.get("screen").width;
+
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+  header: {
+    backgroundColor: "#1E2F97",
+    width: vw,
+    height: vw / 1.5,
   },
-});
+  text: {
+    color: "white",
+  }, 
+})
