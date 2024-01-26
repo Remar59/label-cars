@@ -1,28 +1,33 @@
 import React from 'react'
-import { View, Text, StyleSheet, Image,  } from 'react-native';
+import { View, Text, StyleSheet, Image, } from 'react-native';
 
 const Caritem = (props) => {
     const item = props.route.params.item;
-  return (
-    <View style={{...styles.container, backgroundColor: item.color}}>
-        <Image style={styles.image} source={{uri: item.image}}></Image>
+    return (
+        <View style={{ ...styles.container, backgroundColor: item.color }}>
+            <Image style={styles.image} source={{ uri: item.image }}></Image>
+            <View style={styles.optionsContainer}>
+                <View style={styles.optionsDiv}>
+                    <Image style={styles.icon} source={require("../icon/engine.png")} />
+                    <Text style={styles.textOptions}>Boîte automatique</Text></View>
+                <View style={styles.optionsDiv}>
+                    <Image style={styles.icon} source={require("../icon/compass.png")} />
+                    <Text>GPS intégré</Text></View>
+                <View style={styles.optionsDiv}>
+                    <Image style={styles.icon} source={require("../icon/doors.png")} />
+                    <Text>5 places</Text></View>
+                <View style={styles.optionsDiv}>
+                    <Image style={styles.icon} source={require("../icon/snow.png")} />
+                    <Text>Climatisation</Text></View></View>
 
-        <View>
-        <Image style={styles.icon} source={require("../icon/engine.png")}/></View>
-        <Text>Boîte automatique</Text>
-        <View>
-        <Image style={styles.icon} source={require("../icon/compass.png")}/>
-        <Text>GPS intégré</Text></View>
-        <View>
-        <Image style={styles.icon} source={require("../icon/doors.png")}/>
-        <Text>5 places</Text></View>
-        <View>
-        <Image style={styles.icon} source={require("../icon/snow.png")}/>
-        <Text>Climatisation</Text></View>
-        
-        
-    </View>
-  )
+
+            <View style={styles.footer}>
+                <Text style={styles.footerText}>{item.price}€/jour</Text>
+            </View>
+        </View>
+
+
+    )
 }
 
 export default Caritem
@@ -33,7 +38,19 @@ const styles = StyleSheet.create({
         backgroundColor: "brown",
         paddingTop: 50,
         position: "relative"
-        
+    },
+    optionsDiv: {
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    optionsContainer: {
+        display: "flex",
+        flexWrap: "wrap",
+        maxHeight: 350,
+        rowGap: 100,
+        left: 80,
+        top: 120,
+        columnGap: 50,
     },
     image: {
         width: 400,
@@ -60,10 +77,26 @@ const styles = StyleSheet.create({
     },
     options: {
         flexWrap: "wrap",
-        
     },
     icon: {
         width: 50,
-        height: 50
+        height: 50,
+        alignSelf: "center"
+    },
+    textOptions: {
+        alignContent: "center"
+    },
+    footer: {
+        position: 'absolute',
+        bottom: 0,
+        width: '100%',
+        backgroundColor: '#2D4F6C',
+        padding: 30,
+        alignItems: 'center',
+    },
+    footerText: {
+        color: "white",
+        fontSize: 25
     }
-})
+}
+)

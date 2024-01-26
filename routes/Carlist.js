@@ -4,17 +4,17 @@ import { View, Image, Text, Dimensions, FlatList, StyleSheet, TouchableOpacity }
 import cars from "../cars.js";
 
 export default function Carlist(props) {
-    
+
 
   const renderCarItem = (item) => {
     return (
-        
-      <TouchableOpacity style={styles.carItem} onPress={() => props.navigation.navigate("CarItem", {item})}>
 
-        <Image style={styles.carImage} source={{ uri: item.image }}/>
-        <View style={styles.cartext}>
-        <Text style={styles.carName}>{item.name}</Text>
-        <Text>{item.price}€ par jour</Text></View>
+      <TouchableOpacity style={styles.carItem} onPress={() => props.navigation.navigate("CarItem", { item })}>
+
+        <Image style={styles.carImage} source={{ uri: item.image }} />
+        <View style={styles.carText}>
+          <Text style={styles.carName}>{item.name}</Text>
+          <Text style={{fontSize: 18}}>{item.price}€ par jour</Text></View>
       </TouchableOpacity>
 
     )
@@ -24,9 +24,9 @@ export default function Carlist(props) {
     <View style={styles.container}>
       <StatusBar style="light" />
 
-      <FlatList 
+      <FlatList
         data={cars}
-        renderItem={({item}) => renderCarItem(item)}
+        renderItem={({ item }) => renderCarItem(item)}
         keyExtractor={item => item.name}
       />
 
@@ -40,7 +40,7 @@ const vh = Dimensions.get("screen").height;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff', 
+    backgroundColor: '#fff',
   },
   header: {
     width: vw,
@@ -51,9 +51,16 @@ const styles = StyleSheet.create({
     height: 100,
     alignSelf: "start"
   },
+  carText: {
+    flexShrink: 1
+  },
   carName: {
-    
-    textTransform: "uppercase"
+    fontWeight: "bold",
+    fontSize: 18,
+    textTransform: "uppercase",
+    display: "flex",
+    flexDirection: "row",
+    flexWrap: "wrap",
   },
   carItem: {
     flex: 1,

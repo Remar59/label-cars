@@ -15,19 +15,35 @@ export default function App() {
       <Stack.Navigator screenOptions={{
         headerStyle: {
           backgroundColor: '#2D4F6C',
-          },
-          headerTintColor: '#ffffff',
-          headerTitleAlign: "center",
-          headerTitleStyle : {
-            color: 'white',
-            
+        },
+        headerTintColor: '#ffffff',
+        headerTitleAlign: "center",
+        headerTitleStyle: {
+          color: 'white',
+
         }
       }}>
-        <Stack.Screen options={ {headerTitle: () => <Image
-      style={{ width: 50, height: 50}}
-      source={require('./img/logo-transparent.png')}
-    />}} name="Home" component={Home}></Stack.Screen>
-        <Stack.Screen name="CarItem" component={Caritem} ></Stack.Screen>
+        <Stack.Screen options={{
+          headerTitle: () => <Image
+            style={{ width: 50, height: 50 }}
+            source={require('./img/logo-transparent.png')}
+          />
+        }} name="Home" component={Home}></Stack.Screen>
+        <Stack.Screen
+          name="CarItem"
+          component={Caritem}
+          options={({ route }) => ({
+            headerTitle: route.params.item.name, // Set the header title dynamically based on the item's name
+            headerStyle: {
+              backgroundColor: '#2D4F6C',
+            },
+            headerTintColor: '#ffffff',
+            headerTitleAlign: "center",
+            headerTitleStyle: {
+              color: 'white',
+            },
+          })}
+        />
         <Stack.Screen name="CarList" component={Carlist} options={{ title: 'Nos Véhicules' }}></Stack.Screen>
       </Stack.Navigator>
     </NavigationContainer>
@@ -45,5 +61,5 @@ const styles = StyleSheet.create({
   },
   text: {
     color: "white",
-  }, 
+  },
 })
