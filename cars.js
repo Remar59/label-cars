@@ -1,5 +1,7 @@
-export const AUTOMATIC = "automatique";
-export const MANUAL = "manuel";
+export const AUTOMATIC = "Boîte automatique";
+export const MANUAL = "Boîte manuelle";
+export const AC = "Air conditionné";
+
 
 const cars = [
     {
