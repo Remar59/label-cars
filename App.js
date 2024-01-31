@@ -1,16 +1,17 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import React from "react";
 import Home from "./routes/Home";
 import Caritem from "./routes/Caritem";
 import Carlist from "./routes/Carlist";
-import { StyleSheet, Dimensions, Image } from "react-native";
-import { Button } from "react-native";
+import { StyleSheet, Dimensions, Image, Pressable, Text } from "react-native";
+import React, { useState } from 'react';
+
 
 const Stack = createNativeStackNavigator();
 
 
 export default function App() {
+
   return (
     <NavigationContainer style={styles.text}>
       <Stack.Navigator screenOptions={{
@@ -34,7 +35,7 @@ export default function App() {
           name="CarItem"
           component={Caritem}
           options={({ route }) => ({
-            headerTitle: route.params.item.name, 
+            headerTitle: route.params.item.name,
             headerStyle: {
               backgroundColor: '#2D4F6C',
             },
@@ -45,16 +46,16 @@ export default function App() {
             },
           })}
         />
-        <Stack.Screen name="CarList" component={Carlist} options={{ title: 'Nos Véhicules',
+        <Stack.Screen name="CarList" component={Carlist} options={{
+          title: 'Nos Véhicules',
           headerRight: () => (
-            <Button
-              onPress={() => alert('Y\'a pas de filtres pour le moment.')}
-              title="Filtres"
-              backgroundColor="##2D4F6C"
-            />
+            <Pressable >
+              <Text style={styles.filter}>Filtres</Text>
+            </Pressable>
           ),
         }}></Stack.Screen>
       </Stack.Navigator>
+
     </NavigationContainer>
   );
 
@@ -71,4 +72,7 @@ const styles = StyleSheet.create({
   text: {
     color: "white",
   },
+  filter: {
+    color: "white",
+  }
 })

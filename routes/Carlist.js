@@ -69,7 +69,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#DFDFDF",
     borderRadius: 20,
     display: "flex",
-    flexDirection: "row"
-
+    flexDirection: "row",
   }
 });
