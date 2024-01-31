@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Text, StyleSheet, Image } from "react-native";
-import { MANUAL, GPS, AC } from "../cars";
+import { MANUAL } from "../cars";
 
 const Caritem = (props) => {
   const item = props.route.params.item;

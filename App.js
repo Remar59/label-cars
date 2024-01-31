@@ -5,6 +5,7 @@ import Home from "./routes/Home";
 import Caritem from "./routes/Caritem";
 import Carlist from "./routes/Carlist";
 import { StyleSheet, Dimensions, Image } from "react-native";
+import { Button } from "react-native";
 
 const Stack = createNativeStackNavigator();
 
@@ -33,7 +34,7 @@ export default function App() {
           name="CarItem"
           component={Caritem}
           options={({ route }) => ({
-            headerTitle: route.params.item.name, // Set the header title dynamically based on the item's name
+            headerTitle: route.params.item.name, 
             headerStyle: {
               backgroundColor: '#2D4F6C',
             },
@@ -44,7 +45,15 @@ export default function App() {
             },
           })}
         />
-        <Stack.Screen name="CarList" component={Carlist} options={{ title: 'Nos Véhicules' }}></Stack.Screen>
+        <Stack.Screen name="CarList" component={Carlist} options={{ title: 'Nos Véhicules',
+          headerRight: () => (
+            <Button
+              onPress={() => alert('Y\'a pas de filtres pour le moment.')}
+              title="Filtres"
+              backgroundColor="##2D4F6C"
+            />
+          ),
+        }}></Stack.Screen>
       </Stack.Navigator>
     </NavigationContainer>
   );
